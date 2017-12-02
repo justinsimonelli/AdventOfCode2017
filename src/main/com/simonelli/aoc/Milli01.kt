@@ -1,6 +1,5 @@
-package com.simonelli
+package main.com.simonelli.aoc
 
-import com.simonelli.utilities.FileReader
 import kotlin.math.abs
 
 /**
@@ -43,7 +42,7 @@ For example:
  */
 
 fun main(args: Array<String>){
-    val puzzleInput: String = FileReader().getPuzzleInput("src/resources/milli01.txt")
+    val puzzleInput: String = FileReader().getPuzzleInput("src/main/resources/input/milli01.txt")
 
     val captcha1 = captcha(puzzleInput, 1)
     val captcha2 = captcha(puzzleInput, puzzleInput.toCharArray().size / 2)

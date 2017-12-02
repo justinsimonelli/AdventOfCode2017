@@ -1,4 +1,4 @@
-package com.simonelli.utilities
+package main.com.simonelli.aoc
 
 import java.io.File
 import java.io.InputStream
