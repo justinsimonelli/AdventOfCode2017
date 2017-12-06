@@ -12,19 +12,28 @@ fun main(args: Array<String>) {
                 passphrases.addAll(phrases)
                 val isValid = !passphrases.isEmpty() && passphrases.size == totalPhrases
                 totalValidPharses += if(isValid) 1 else 0
-                println("isValid = $isValid")
             }
-    println("total valid passphrases = $totalValidPharses")
+    println("total valid passphrases 1 = $totalValidPharses")
+
+    totalValidPharses = 0
+
+   puzzleInput
+           .split("\n")
+           .forEach {
+               val list = it.split(" ")
+               var mutableList = list.toMutableList()
+               var anagramFound = false
+               list.forEach { word ->
+                   mutableList.removeAt(0)
+                   if(hasAnagrams(word, mutableList)) { anagramFound = true; }
+               }
+               if (!anagramFound) { totalValidPharses++ }
+           }
+
+    println("total valid passphrases 2 = $totalValidPharses")
 }
 
-fun match(baseWord: String, words: List<String>): List<String> {
-    val sortedLowerBaseWord = baseWord.toSortedLowerCase()
-    val thing = words.
-            filterNot { it.equals(baseWord, ignoreCase = true) }.
-            filter { it.toSortedLowerCase() == sortedLowerBaseWord }
-
-    return thing
+fun hasAnagrams(baseWord: String, words: List<String>): Boolean {
+    val sortedLowerBaseWord = baseWord.toLowerCase().toList().sorted()
+    return words.filter { it.toLowerCase().toList().sorted() == sortedLowerBaseWord }.isEmpty()
 }
-
-
-fun String.toSortedLowerCase(): List<Char> = this.toLowerCase().toList().sorted()
